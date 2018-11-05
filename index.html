@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>video 详解</title>
   </head>
+<body>
   <!-- 基础用法 -->
   <!-- controlslist：nodownload禁用下载 nofullscreen禁用全屏 -->
   <!-- <video src="./test.mp4" width="400" height="225" controls controlslist="nodownload nofullscreen"></video> -->
@@ -46,7 +47,7 @@
     }, 2000);
   </script> -->
   <!-- 备用地址切换 -->
-  <video id="_source" controls width="400" height="225" poster="./poster.jpg">
+  <!-- <video id="_source" controls width="400" height="225" poster="./poster.jpg">
     <source src="./test3.mp4" type="video/mp4">
     <source src="./test-2.mp4" type="video/mp4">
   </video>
@@ -55,5 +56,50 @@
     setTimeout(function () {
       console.log('src', v.currentSrc);// currentSrc是当前的正在播放的地址
     }, 1000);
+  </script> -->
+  <!-- 事件：视频查找、时长变化、元数据加载、视频下载监听、可播放监听、播放监听、暂停监听、查找开始、查找结束、视频加载等待、视频结束 -->
+  <video src="./test.mp4" id="vs" width="400" height="225" controls controlslist="nodownload nofullscreen"></video>
+  <script type="text/javascript">
+    // 当音频/视频处于加载过程中时，会依次发生以下事件：loadstart-->durationchange-->loadedmetadata-->loadeddata-->progress-->canplay-->canplaythrough
+    var v = document.getElementById('vs');
+    console.log('v.duration', v.duration); // v.duration NaN
+    // loadstart 当浏览器开始寻找指定的音频/视频时，会发生 loadstart 事件。即当加载过程开始时
+    v.addEventListener('loadstart', function (e) {
+      console.log('loadstart', v.duration);// loadstart NaN
+    });
+    // durationchange 当指定音频/视频的时长数据发生变化时，发生 durationchange 事件
+    v.addEventListener('durationchange', function (e) {
+      console.log('durationchange', v.duration);// durationchange 87.978667
+    });
+    // loadedmetadata 当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件
+    v.addEventListener('loadedmetadata', function (e) {
+      console.log('loadedmetadata');
+    });
+    // loadeddata 当当前帧的数据已加载，但没有足够的数据来播放指定音频/视频的下一帧时，会发生 loadeddata 事件
+    v.addEventListener('loadeddata', function (e) {
+      console.log('loadeddata');
+    });
+    // progress 当浏览器正在下载指定的音频/视频时，会发生 progress 事件
+    v.addEventListener('progress', function (e) {
+      console.log('progress');
+    });
+    // canplay 当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件
+    v.addEventListener('canplay', function (e) {
+      console.log('canplay');
+    });
+    // canplaythrough 当浏览器预计能够在不停下来进行缓冲的情况下持续播放指定的音频/视频时，会发生 canplaythrough 事件
+    v.addEventListener('canplaythrough', function (e) {
+      console.log('canplaythrough');
+    });
+    // play 播放
+    v.addEventListener('play', function (e) {
+      console.log('play');
+    });
+    // pause 暂停
+    v.addEventListener('pause', function (e) {
+      console.log('pause');
+    });
+
   </script>
+</body>
 </html>
