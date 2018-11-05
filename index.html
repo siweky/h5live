@@ -99,7 +99,34 @@
     v.addEventListener('pause', function (e) {
       console.log('pause');
     });
-
+    // seeking seeking 事件在用户开始移动/跳跃到新的音频/视频（audio/video）播放位置时触发
+    v.addEventListener('seeking', function (e) {
+      console.log('seeking');
+    });
+    // seeked seeked 事件在用户已移动/跳跃到音频/视频（audio/video）中的新位置时触发
+    v.addEventListener('seeked', function (e) {
+      console.log('seeked');
+    });
+    // waiting waiting 事件在视频由于需要缓冲下一帧而停止时触发
+    v.addEventListener('waiting', function (e) {
+      console.log('waiting');
+    });
+    // playing playing 事件在音频/视频(audio/video)因缓冲而暂停或停止后已就绪时触发
+    v.addEventListener('playing', function (e) {
+      console.log('playing');
+    });
+    // timeupdate timeupdate 事件在音频/视频（audio/video）的播放位置发生改变时触发
+    v.addEventListener('timeupdate', function (e) {
+      console.log('timeupdate');
+    });
+    // ended ended 事件在音频/视频(audio/video)播放完成后触发
+    v.addEventListener('ended', function (e) {
+      console.log('ended');
+    });
+    // error
+    v.addEventListener('error', function (e) {
+      console.log('error', e);
+    });
   </script>
 </body>
 </html>
